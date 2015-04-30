@@ -1,0 +1,25 @@
+<!DOCTYPE.html>
+  <html>
+     <head>
+       <meta charset="utf-8">
+       <title>Autores</title>
+       <link rel="stylesheet" href="style.css">
+     </head>
+     <body>
+     <h2>Autores</h2>
+       <div id="main">
+        <div class="fotor">
+          <img src="FotoRuben.jpg"><br>
+          Rubén García Martín: r.gmartin@alumnos.upm.es
+        </div>
+        <div class="fotoa">
+          <img src="FotoAlex.jpg"><br>
+          Alejandro Ramírez Calonge: alejandro.ramirez.calonge@alumnos.upm.es
+        </div>
+        <div class="video">
+       	    <iframe width="320" height="195" src="https://www.youtube.com/embed/L63rDlpJ3_o" frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+       </div> 
+     </body>
+  </html>
