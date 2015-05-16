@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 });
 
 //Definicion de rutas de sesion
-router.get('/login',           sessionController.new);          //formulario login
+router.get('/login',            sessionController.new);         //formulario login
 router.post('/login',           sessionController.create);      //crear sesion
 router.get('/logout',           sessionController.destroy);     //destruir sesion
 
