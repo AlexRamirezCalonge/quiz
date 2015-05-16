@@ -63,7 +63,7 @@ exports.create = function(req, res){
 
   quiz
   .validate()
-  .success(
+  .then(
     function(err){
       if(err){
         res.render('quizes/new', {quiz: quiz, errors: err.errors});
@@ -74,4 +74,11 @@ exports.create = function(req, res){
        }  //res.redirect: Redireccion HTTP (URL relativo) lista de preguntas
      }
   );
+};
+
+// GET quizes/:id/edit
+exports.edit = function(req, res) {
+  var quiz = req.quiz;  //autoload de instancia de quiz
+
+  res.render('quizes/edit', {quiz: quiz, errors: []});
 };
