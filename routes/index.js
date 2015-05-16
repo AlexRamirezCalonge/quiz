@@ -7,7 +7,7 @@ router.param('quizId', quizController.load); //autoload :quizId
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Quiz' });
+  res.render('index', { title: 'Quiz', errors: [] });
 });
 
 //Definicion de rutas de /quizes
