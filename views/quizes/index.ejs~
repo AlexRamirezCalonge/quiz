@@ -11,7 +11,7 @@
     <% } %>
     </table>
     <form methods="get">
-      <input type="text" name="busqueda" value=""/>
+      <input type="text" name="search" value=""/>
       <input type="submit" value="Buscar">
     </form>
   </body>
