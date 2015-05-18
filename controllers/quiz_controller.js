@@ -21,7 +21,16 @@ exports.show = function(req, res) {
 
 // GET /author
 exports.author = function(req, res) {
-    res.render('author');
+    res.render('author', {errors: []});
+};
+
+// GET /quizes/statistics
+exports.statistics = function(req, res) {
+ models.Quiz.findAll().then(
+  function(quizes){
+    res.render('quizes/statistics', { quizes: quizes, errors: []});
+  }
+ ).catch(function(error) { next(error);}) 
 };
 
 // GET /quizes/:id/answer
