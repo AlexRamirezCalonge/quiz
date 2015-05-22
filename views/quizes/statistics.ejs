@@ -7,16 +7,21 @@
      </head>
      <body>
    
-     Numero de preguntas -> <%= quizes.length %><br/>
+     Numero de preguntas -> 
+        <% npreg=quizes.length; %>
+        <%= npreg %> preguntas<br/>
      
      Numero de comentarios totales -> 
-        <%= quizes.length %><br/>
+        <% ncomment=comments.length %>
+        <%= ncomment %> comentarios<br/>
      
-     Numero medio de comentarios por pregunta -> 2<br/>
+     Numero medio de comentarios por pregunta -> 
+        <% media = ncomment/npreg; %>
+        <%= media %> comentarios por pregunta<br/>
      
-     Numero de preguntas sin comentarios -> 2<br/>
+     Numero de preguntas sin comentarios -> 2 preguntas sin comentarios<br/>
      
-     Numero de preguntas con comentarios -> 2<br/>
+     Numero de preguntas con comentarios -> 2 preguntas sin comentarios<br/>
      
     </table>
      </body>

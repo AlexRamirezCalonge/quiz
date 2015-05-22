@@ -26,11 +26,15 @@ exports.author = function(req, res) {
 
 // GET /quizes/statistics
 exports.statistics = function(req, res) {
+models.Comment.findAll().then(
+ function(comments){
  models.Quiz.findAll().then(
   function(quizes){
-    res.render('quizes/statistics', { quizes: quizes, errors: []});
+    res.render('quizes/statistics', { quiz: req.quiz, quizes: quizes, comments: comments, errors: []});
   }
  ).catch(function(error) { next(error);}) 
+ }
+).catch(function(error) { next(error);}) 
 };
 
 // GET /quizes/:id/answer
