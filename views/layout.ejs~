@@ -23,7 +23,10 @@
         <a href="/login">Login</a></span>
       - <a href="/user">Sign Up</a></span>
    <%}else{%>
-      <span class="right"> <%=session.user.username%> <a href="/logout">Logout</a></span>
+      <span class="right">
+        <%=session.user.username%>
+      - <a href="/logout">Logout</a></span>
+      - <a href="/user/<%=session.user.id%>/edit">Settings</a></span>
    <%}%>
     </div>
 
