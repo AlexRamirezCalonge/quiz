@@ -59,7 +59,7 @@ sequelize.sync().then(function() {
          {username:'pepe', password:'5678'}, //isAdmin por defecto: 'false'
         ]
       ).then(function(){
-      .console.log('Base de datos (tabla user) inicializada');
+      console.log('Base de datos (tabla user) inicializada');
       Quiz.count().then(function (count){
         if(count === 0){  // la tabla se inicializa solo si esta vacia
           Quiz.bulkCreate(  //estos quizes pertenecen al usuario pepe(2)
