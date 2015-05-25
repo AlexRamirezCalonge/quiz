@@ -61,11 +61,24 @@ exports.answer = function(req, res) {
 };
 
 //GET /quizes
+//GET /users/:userId/quizes
 exports.index = function(req, res){
+
+var options={};
+if (req.user){  // req.user es creado por autoload de usuario
+                // si la ruta lleva el parametro .quizId
+  options.where={ UserId: req.user.id}
+}
 
 var q1=req.query.search||"";
 var q=q1.replace(/\s/g,'%');
 q='%'+q+'%';
+
+  models.Quiz.findAll(options).then(
+     function(quizes){
+       res.render('quizes/index.ejs', { quizes: quizes, errors: []});
+     }
+  ).catch(function(error) { next(error);}) 
 
   models.Quiz.findAll({where: ["pregunta like ?", q], order: [['pregunta','ASC']]}).then(
      function(quizes){
@@ -89,11 +102,11 @@ exports.new=function(req, res){
 //POST /quizes/create
 exports.create = function(req, res){
   req.body.quiz.UserId = req.session.user.id;
-  /**
+  
   if(req.files.image){
     req.body.quiz.image = req.files.image.name;
   }
-  */
+  
   var quiz = models.Quiz.build( req.body.quiz );
 
   quiz

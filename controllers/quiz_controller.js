@@ -61,11 +61,24 @@ exports.answer = function(req, res) {
 };
 
 //GET /quizes
+//GET /users/:userId/quizes
 exports.index = function(req, res){
+
+var options={};
+if (req.user){  // req.user es creado por autoload de usuario
+                // si la ruta lleva el parametro .quizId
+  options.where={ UserId: req.user.id}
+}
 
 var q1=req.query.search||"";
 var q=q1.replace(/\s/g,'%');
 q='%'+q+'%';
+
+  models.Quiz.findAll(options).then(
+     function(quizes){
+       res.render('quizes/index.ejs', { quizes: quizes, errors: [], title: 'Quiz'});
+     }
+  ).catch(function(error) { next(error);}) 
 
   models.Quiz.findAll({where: ["pregunta like ?", q], order: [['pregunta','ASC']]}).then(
      function(quizes){
