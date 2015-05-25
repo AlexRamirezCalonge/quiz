@@ -9,19 +9,36 @@
    
      Numero de preguntas -> 
         <% npreg=quizes.length; %>
-        <%= npreg %><br/>
+        <%= npreg %> preguntas<br/>
      
      Numero de comentarios totales -> 
         <% ncomment=comments.length %>
-        <%= ncomment %><br/>
+        <%= ncomment %> comentarios<br/>
      
      Numero medio de comentarios por pregunta -> 
         <% media = ncomment/npreg; %>
-        <%= media %><br/>
+        <%= media %> comentarios por pregunta<br/>
      
-     Numero de preguntas sin comentarios -> 2<br/>
+     Numero de preguntas sin comentarios ->
+
+	<% var preg=[]; %>
+	<% for (var i =0; i<comments.length; i++){ %>
+	<%	if(preg[comments[i].QuizId]){ preg[comments[i].QuizId]+=1; %>
+	<%	}else{ preg[comments[i].QuizId]=1; }%>
+	<%	}%>
+
+	<%	llenas=0;%>
+<%	for(var k = 0; k<preg.length; k++){%>
+	<%	if(preg[k]) llenas++;%>
+	<%}%>
+
+        <%= quizes.length-llenas %>
+
+
+
+ 2 preguntas sin comentarios<br/>
      
-     Numero de preguntas con comentarios -> 2<br/>
+     Numero de preguntas con comentarios -> 2 preguntas sin comentarios<br/>
      
     </table>
      </body>

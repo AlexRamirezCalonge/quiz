@@ -30,6 +30,7 @@ router.put('/user/:userId(\\d+)', sessionController.loginRequired, sessionContro
 router.delete('/user/:userId(\\d+)', sessionController.loginRequired, userController.ownershipRequired, userController.destroy); // borrar cuenta
 router.get('/user/:userId(\\d+)/quizes', sessionController.timeout, quizController.index); // ver las preguntas de un usuario
 
+
 // Definición de rutas de /quizes
 router.get('/quizes', quizController.index);
 router.get('/quizes/:quizId(\\d+)', quizController.show);

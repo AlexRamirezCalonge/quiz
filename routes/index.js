@@ -49,6 +49,6 @@ sessionController.loginRequired, commentController.ownershipRequired, commentCon
 
 //Definición de rutas adicionales
 router.get('/author', quizController.author,    sessionController.timeout);
-router.get('/quizes/statistics', quizController.statistics,  commentController.statistics,    sessionController.timeout);
+router.get('/quizes/statistics', quizController.statistics,    sessionController.timeout);
 
 module.exports=router;

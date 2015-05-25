@@ -38,12 +38,20 @@ var Comment = sequelize.import(comment_path);
 var user_path = path.join(__dirname,'user');
 var User = sequelize.import(user_path);
 
+//Importar definicion de la tabla Favourites
+var favourites_path = path.join(__dirname,'favourites');
+var Favourites = sequelize.import(favourites_path);
+
 Comment.belongsTo(Quiz);
 Quiz.hasMany(Comment);
 
 //los quizes pertenecen a un usuario registrado
 Quiz.belongsTo(User);
 User.hasMany(Quiz);
+
+//relacion entre quizes y users para favoritos
+User.belongsToMany(Quiz, {through:'Favourites'});
+Quiz.belongsToMany(User, {through:'Favourites'});
 
 exports.Quiz = Quiz; //exportar definicion de tabla Quiz
 exports.Comment = Comment;
@@ -55,8 +63,8 @@ sequelize.sync().then(function() {
   User.count().then(function(count){
     if(count === 0){  //la tabla se inicializa solo si esta vacia
       User.bulkCreate(
-        [{username:'admin', password:'1234', isAdmin: true},
-         {username:'pepe', password:'5678'}, //isAdmin por defecto: 'false'
+        [ {username: 'admin', password: '1234', isAdmin: true},
+          {username: 'pepe', password: '5678'} //isAdmin por defecto: 'false'
         ]
       ).then(function(){
       console.log('Base de datos (tabla user) inicializada');

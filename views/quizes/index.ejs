@@ -19,6 +19,22 @@
                </button>
              </form>
            </td>
+           <td>
+	     <form class="stars"
+               method='post' 
+               action='/users/<%= session.user.id %>/favourites'>
+               <input type='hidden' name='_method' value='put'>
+               <input type='hidden' name='best' value='0'>
+
+                 <input type="image" src="/media/star_grey.png" 
+                   onclick="this.form.best.value=0;" />
+               
+                 <input type="image"
+                   onclick="this.form.best.value=1;"
+	           src="/media/star_yellow.png" />
+             
+             </form>
+           </td>
          <% }
           } %>
        </tr>
