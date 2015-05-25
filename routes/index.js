@@ -23,9 +23,9 @@ router.get('/logout',           sessionController.destroy);     //destruir sesio
 //Definicion de rutas de cuenta
 router.get('/user', userController.new);     //formulario sign in
 router.post('/user', userController.create);  //registrar usuario
-router.get('/user/:userId(\\d+)/edit',  sessionController.loginRequired, userController.edit);
-router.put('/user/:userId(\\d+)', sessionController.loginRequired, userController.update);
-router.delete('/user/:userId(\\d+)', sessionController.loginRequired, userController.destroy);
+router.get('/user/:userId(\\d+)/edit',  sessionController.loginRequired, userController.ownershipRequired, userController.edit);
+router.put('/user/:userId(\\d+)', sessionController.loginRequired, userController.ownershipRequired, userController.update);
+router.delete('/user/:userId(\\d+)', sessionController.loginRequired, userController.ownershipRequired, userController.destroy);
 
 //Definicion de rutas de /quizes
 router.get('/quizes',                      quizController.index,    sessionController.timeout);
@@ -33,14 +33,14 @@ router.get('/quizes/:quizId(\\d+)',        quizController.show,    sessionContro
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer,    sessionController.timeout);
 router.get('/quizes/new',                  sessionController.loginRequired, quizController.new,    sessionController.timeout);
 router.post('/quizes/create',              sessionController.loginRequired, quizController.create,    sessionController.timeout);
-router.get('/quizes/:quizId(\\d+)/edit',   sessionController.loginRequired, quizController.edit,    sessionController.timeout);
-router.put('/quizes/:quizId(\\d+)',        sessionController.loginRequired, quizController.update,    sessionController.timeout);
-router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequired, quizController.destroy,    sessionController.timeout);
+router.get('/quizes/:quizId(\\d+)/edit',   sessionController.loginRequired, quizController.edit, userController.ownershipRequired,     sessionController.timeout);
+router.put('/quizes/:quizId(\\d+)',        sessionController.loginRequired, quizController.update, userController.ownershipRequired,    sessionController.timeout);
+router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequired, quizController.destroy, userController.ownershipRequired,    sessionController.timeout);
 
 //Definicion de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new',   commentController.new,    sessionController.timeout);
 router.post('/quizes/:quizId(\\d+)/comments',      commentController.create,    sessionController.timeout);
-router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',     sessionController.loginRequired,  commentController.publish,    sessionController.timeout);
+router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',     sessionController.loginRequired,  commentController.publish, userController.ownershipRequired,     sessionController.timeout);
  
 router.get('/author', quizController.author,    sessionController.timeout);
 
