@@ -74,13 +74,7 @@ var q1=req.query.search||"";
 var q=q1.replace(/\s/g,'%');
 q='%'+q+'%';
 
-  models.Quiz.findAll(options).then(
-     function(quizes){
-       res.render('quizes/index.ejs', { quizes: quizes, errors: [], title: 'Quiz'});
-     }
-  ).catch(function(error) { next(error);}) 
-
-  models.Quiz.findAll({where: ["pregunta like ?", q], order: [['pregunta','ASC']]}).then(
+  models.Quiz.findAll({where: ["pregunta like ?", q], order: [['pregunta','ASC']]}, options).then(
      function(quizes){
        res.render('quizes/index.ejs', { quizes: quizes, 
                                         errors: [],
