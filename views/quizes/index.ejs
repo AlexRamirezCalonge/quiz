@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <title><%= title %></title>
+   
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -19,24 +19,21 @@
                </button>
              </form>
            </td>
+           
+           <% } %>
            <td>
-	     <form class="stars"
-               method='post' 
-               action='/users/<%= session.user.id %>/favourites'>
-               <input type='hidden' name='_method' value='put'>
-               <input type='hidden' name='best' value='0'>
+		<% if(quizes[i].isFav){ %>	
+			<form method="post" id="borrar" action="/user/<%= session.user.id %>/favourites/<%= quizes[i].id %>?_method=delete">
+		    	<input type ="image" src="/media/star_yellow.png" onClick='return confirm(" ¿Eliminar esta pregunta de favoritos? <% quizes[i].pregunta %>");'>
+			</form>
+    		<% } else { %>
+    			<form method="post" id="borrar" action="/user/<%= session.user.id %>/favourites/<%= quizes[i].id %>?_method=put">
+    			<input type ="image" src="/media/star_grey.png" onClick='return confirm(" Añadir esta pregunta a favoritos? <% quizes[i].pregunta %>");'>
+			</form>
 
-                 <input type="image" src="/media/star_grey.png" 
-                   onclick="this.form.best.value=0;" />
-               
-                 <input type="image"
-                   onclick="this.form.best.value=1;"
-	           src="/media/star_yellow.png" />
-             
-             </form>
-           </td>
-         <% }
-          } %>
+    		<%}%>
+	   </td>
+         <% } %>
        </tr>
     <% } %>
     </table>

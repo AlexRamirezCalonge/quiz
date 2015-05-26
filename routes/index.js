@@ -6,6 +6,7 @@ var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 var userController = require('../controllers/user_controller');
+var favsController = require('../controllers/favourites_controller');
 
 // Página de entrada (home page)
 router.get('/', sessionController.timeout, function(req, res) {
@@ -50,5 +51,10 @@ sessionController.loginRequired, commentController.ownershipRequired, commentCon
 //Definición de rutas adicionales
 router.get('/author', quizController.author,    sessionController.timeout);
 router.get('/quizes/statistics', quizController.statistics,    sessionController.timeout);
+
+//Definición de rutas de favoritos
+router.get('/user/:userId(\\d+)/favourites', sessionController.loginRequired, favsController.show);
+router.put('/user/:userId(\\d+)/favourites/:quizId(\\d+)', sessionController.loginRequired, favsController.marcar);
+router.delete('/user/:userId(\\d+)/favourites/:quizId(\\d+)', sessionController.loginRequired, favsController.desmarcar);
 
 module.exports=router;
